@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MarvelService } from 'src/app/services/marvel.service';
-import { AppConst } from '../../ultity/constant';
+import { AppConfig } from '../../configs';
 
 @Component({
   selector: 'app-home-page',
@@ -11,7 +11,7 @@ export class HomePageComponent implements OnInit {
   heroes: any = null;
   page = 1;
   offset = 0;
-  AppConst = AppConst;
+  AppConfig = AppConfig;
   loadMore = false;
   hasMoreHeroes = true;
   isLoading = false;
@@ -23,11 +23,11 @@ export class HomePageComponent implements OnInit {
 
   getHeroes() {
     this.marvelService.getAllHeroes(this.offset).subscribe(res => {
-      this.offset += AppConst.LIMIT;
+      this.offset += AppConfig.LIMIT;
       if (res.results) {
         this.heroes = this.heroes ? this.heroes.concat(res.results) : res.results;
       }
-      if (this.page * AppConst.LIMIT >= res.total) {
+      if (this.page * AppConfig.LIMIT >= res.total) {
         this.hasMoreHeroes = false;
       }
       this.isLoading = false;

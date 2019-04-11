@@ -9,7 +9,7 @@
       </div>
       <div class="hero-info-header ml-3 col-12 col-md">
         <h4 class="title">{{heroDetail.name}}</h4>
-        <p class="detail">{{heroDetail.description ? heroDetail.description : AppConst.EMPTY_DESCRIPTION}}</p>
+        <p class="detail">{{heroDetail.description ? heroDetail.description : AppConfig.EMPTY_DESCRIPTION}}</p>
       </div>
     </div>
     <app-loading [hidden]="comics"></app-loading>
@@ -29,7 +29,7 @@
               <h5 class="title">{{i + 1}}. {{comic.title}}</h5>
               <p class="detail">
                 {{comic.description ? 
-                  comic.description.length > AppConst.MAX_DESCRIPTION_CHARACTERS ? (comic.description | slice:0:AppConst.MAX_DESCRIPTION_CHARACTERS)+'...' : comic.description : AppConst.EMPTY_DESCRIPTION}}
+                  comic.description.length > AppConfig.MAX_DESCRIPTION_CHARACTERS ? (comic.description | slice:0:AppConfig.MAX_DESCRIPTION_CHARACTERS)+'...' : comic.description : AppConfig.EMPTY_DESCRIPTION}}
               </p>
             </div>
           </div>

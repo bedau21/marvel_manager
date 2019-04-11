@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MarvelService } from 'src/app/services/marvel.service';
 import { ActivatedRoute } from '@angular/router';
-import { AppConst } from '../../ultity/constant';
-
+import { AppConfig } from '../../configs';
 @Component({
   selector: 'app-detail-page',
   templateUrl: './detail-page.component.html',
@@ -12,7 +11,7 @@ export class DetailPageComponent implements OnInit {
   heroDetail: any = null;
   comics: any = null;
   thumbnailPath = '';
-  AppConst = AppConst;
+  AppConfig = AppConfig;
   comicsURI = '';
   page = 1;
   count = 0;
@@ -33,7 +32,7 @@ export class DetailPageComponent implements OnInit {
       if (res) {
         this.heroDetail = res;
         this.thumbnailPath = this.marvelService.getThumbnailPath(res.thumbnail.path, res.thumbnail.extension);
-        this.comicsURI = this.heroDetail.comics.collectionURI;
+        this.comicsURI = res.comics.collectionURI;
         this.getComics();
       }
     });
@@ -42,11 +41,11 @@ export class DetailPageComponent implements OnInit {
   getComics() {
     const total = this.heroDetail.comics.available;
     this.marvelService.getHeroComics(this.comicsURI, total, this.offset).subscribe(res => {
-      this.offset += AppConst.LIMIT;
+      this.offset += AppConfig.LIMIT;
       if (res.results) {
         this.comics = this.comics ? this.comics.concat(res.results) : res.results;
       }
-      if (this.page * AppConst.LIMIT >= res.total) {
+      if (this.page * AppConfig.LIMIT >= res.total) {
         this.hasMoreComics = false;
       }
       this.isLoading = false;

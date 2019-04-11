@@ -23,8 +23,8 @@
               <div class="col-12 col-md py-3">
                 <p>
                   {{hero.description ? 
-                    hero.description.length > AppConst.MAX_DESCRIPTION_CHARACTERS 
-                    ? (hero.description | slice:0:AppConst.MAX_DESCRIPTION_CHARACTERS)+'...' : hero.description : AppConst.EMPTY_DESCRIPTION}}
+                    hero.description.length > AppConfig.MAX_DESCRIPTION_CHARACTERS 
+                    ? (hero.description | slice:0:AppConfig.MAX_DESCRIPTION_CHARACTERS)+'...' : hero.description : AppConfig.EMPTY_DESCRIPTION}}
                 </p>
               </div>
               <div class="col-12 col-md-auto py-3">

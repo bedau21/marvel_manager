@@ -15,6 +15,10 @@ export class ComicDetailComponent implements OnInit {
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.getHeroComicById();
+  }
+
+  getHeroComicById() {
     const id = this.activatedRoute.snapshot.paramMap.get('comicId');
     this.marvelService.getHeroComicById(id).subscribe(res => {
       this.selectedComic = res;
